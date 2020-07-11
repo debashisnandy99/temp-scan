@@ -8,6 +8,7 @@ exports.startOcr = (req, res, next) => {
     if (!req.file) {
         const error = new Error("No Image Provided");
         error.statusCode = 422;
+        error.message = "Image not found";
         throw error;
     }
     const filePath = req.file.path;
@@ -28,6 +29,7 @@ exports.startOcr = (req, res, next) => {
         .catch(errorTcr => {
             const error = new Error("No Image Provided");
             error.statusCode = 422;
+            error.message = "tessarect error";
             throw error;
         });
 
